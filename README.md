@@ -1,206 +1,174 @@
-# Multi-Agent Intelligent Financial Analysis System
+# Multi-Agent Financial Analysis System
 
-A sophisticated multi-agent system for financial analysis using LangChain + CrewAI.
+## Complete Project Documentation
 
-## 🚀 Features
+### 📋 Table of Contents
+1. [Project Overview](#project-overview)
+2. [System Architecture](#system-architecture)
+3. [Installation Guide](#installation-guide)
+4. [Quick Start](#quick-start)
+5. [Usage Examples](#usage-examples)
+6. [Complete Code Files](#complete-code-files)
+7. [Configuration](#configuration)
+8. [Project Structure](#project-structure)
+9. [Agent Responsibilities](#agent-responsibilities)
+10. [Academic Context](#academic-context)
 
-- **Multi-Agent Architecture**: Three specialized agents (Data, Analysis, Report) with CrewAI orchestration
-- **MCP Protocol Integration**: Unified access to financial data sources
-- **RAG System**: Knowledge graph-enhanced retrieval for accurate analysis
-- **Hierarchical Memory**: Short, medium, and long-term memory management
-- **Fault Tolerance**: Circuit breakers, agent redundancy, graceful degradation
-- **Continuous Learning**: Self-evolving agents with feedback loops
-- **Quality Evaluation**: Automated metrics and human-in-the-loop validation
+---
 
-## 📋 Prerequisites
+## Project Overview
 
-- Python 3.10+
-- Redis (for memory management)
-- Neo4j (optional, for knowledge graph)
-- OpenAI API key
+A sophisticated multi-agent system for financial market analysis built with **LangChain**, **CrewAI**, and **Ollama**. The system uses multiple specialized AI agents to collect, analyze, and generate investment insights for stocks.
 
-## 🛠 Installation
+### 🎯 Key Features
 
-1. Clone the repository:
+#### 🤖 Multi-Agent Architecture
+- **Data Agent**: Collects and processes financial data
+- **Analysis Agent**: Performs technical and fundamental analysis
+- **LLM Agent**: Generates AI-powered insights using local LLMs
+- **Report Agent**: Creates comprehensive JSON reports
+- **Manager Agent**: Orchestrates the entire workflow
+
+#### 📊 Analysis Capabilities
+- Real-time stock data collection (via Yahoo Finance)
+- Technical indicators (RSI, MACD, Moving Averages)
+- Sentiment analysis of market news
+- Risk assessment and scoring
+- AI-generated investment insights
+- Professional report generation
+
+#### 🚀 Tech Stack
+- **LangChain** + **CrewAI** for agent orchestration
+- **Ollama** for local LLM inference
+- **Yahoo Finance API** for real market data
+- **Rich** for beautiful CLI interfaces
+- **Streamlit** for web dashboard (optional)
+
+---
+
+## System Architecture
+
+```mermaid
+graph TB
+    User[User Request] --> Manager[Manager Agent]
+    Manager --> Data[Data Agent]
+    Manager --> Analysis[Analysis Agent]
+    Manager --> LLM[LLM Agent]
+    Manager --> Report[Report Agent]
+    
+    Data --> |Price Data| Analysis
+    Data --> |News Data| Analysis
+    Analysis --> |Technical Indicators| LLM
+    Analysis --> |Sentiment Scores| LLM
+    LLM --> |AI Insights| Report
+    Analysis --> |Risk Assessment| Report
+    Report --> |JSON Report| User
+    
+    subgraph "External Services"
+        Yahoo[Yahoo Finance]
+        Ollama[Ollama LLM]
+    end
+    
+    Data -.-> Yahoo
+    LLM -.-> Ollama
+```
+
+---
+
+## Installation Guide
+
+### 1. Clone Repository
 ```bash
 git clone https://github.com/yourusername/multi-agent-financial-system.git
 cd multi-agent-financial-system
-Create virtual environment:
+```
 
-bash
+### 2. Create Virtual Environment
+```bash
+# Windows
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-Install dependencies:
+venv\Scripts\activate
 
-bash
-pip install -e .[dev,mcp,monitoring]
-Configure environment:
+# Linux/Mac
+python3 -m venv venv
+source venv/bin/activate
+```
 
-bash
-cp .env.example .env
-# Edit .env with your API keys and settings
-🚀 Quick Start
-Start MCP servers:
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-bash
-python -m src.mcp_servers.financial_data_server
-python -m src.mcp_servers.news_sentiment_server
-Run stock analysis:
+### 4. Set Up Ollama
+```bash
+# Install Ollama (if not installed)
+curl -fsSL https://ollama.ai/install.sh | sh
 
-bash
-python -m src.main analyze --ticker AAPL --timeframe 1y
-Check system status:
+# Start Ollama server
+ollama serve
 
-bash
-python -m src.main status
-Launch dashboard:
+# In another terminal, download models
+ollama pull mistral:latest      # Recommended for speed
+ollama pull llama3.1:latest     # For better quality
+```
 
-bash
-python -m src.main dashboard
-🏗 System Architecture
-text
-┌─────────────────┐
-│   User Interface│
-│   (CLI/Web)     │
-└────────┬────────┘
-         │
-┌────────▼────────┐
-│  CrewAI Manager │
-│  (Orchestration)│
-└────────┬────────┘
-         │
-┌────────▼────────┐    ┌──────────────┐    ┌──────────────┐
-│   Data Agent    │◄──►│ MCP Servers  │◄──►│ Data Sources │
-│                 │    │              │    │ (YFinance,   │
-└────────┬────────┘    └──────────────┘    │  NewsAPI)    │
-         │                                 └──────────────┘
-┌────────▼────────┐
-│ Analysis Agent  │
-│ (LLM + TA)      │
-└────────┬────────┘
-         │
-┌────────▼────────┐
-│  Report Agent   │
-│ (Visualization) │
-└────────┬────────┘
-         │
-┌────────▼────────┐
-│     Output      │
-│ (PDF/Dashboard) │
-└─────────────────┘
-🧩 Core Components
-Agents
-Data Agent: Collects and prepares financial data
+---
 
-Analysis Agent: Performs technical and sentiment analysis
+## Quick Start
 
-Report Agent: Generates visual reports and dashboards
+### Basic Commands
+```bash
+# Test the system
+python scripts/start_system.py test
 
-Manager Agent: Orchestrates workflow and task dependencies
+# Analyze a stock (demo mode)
+python scripts/start_system.py analyze --ticker AAPL --timeframe 1mo
 
-Chains
-Financial Data Analysis Chain: Data validation and quality assessment
+# Quick analysis
+python scripts/start_system.py quick --ticker MSFT
 
-Technical Analysis Chain: Indicator calculation and pattern recognition
+# System demo
+python scripts/start_system.py demo
 
-LLM Insight Chain: Investment insights and risk assessment
+# Check system status
+python scripts/start_system.py status
+```
 
-MCP Servers
-Financial Data Server: OHLCV data, fundamentals, quotes
+### Expected Output
+```
+╭───────────────────────────────────────╮
+│ Multi-Agent Financial Analysis System │
+│ Analysis: AAPL | Period: 1mo          │
+╰───────────────────────────────────────╯
 
-News Sentiment Server: News aggregation and sentiment analysis
+[1/4] Data Agent: Collecting data for AAPL
+✓ Collected 30 price records and 4 news items
 
-🔧 Configuration
-Edit config/settings.py or environment variables:
+[2/4] Analysis Agent: Technical analysis
+✓ Analysis completed: BUY (confidence: 85%)
 
-python
-# API Keys
-OPENAI_API_KEY=your_key_here
+[3/4] LLM Agent: Generating insights
+✓ Insights generated using LLM
 
-# MCP Servers
-MCP_FINANCIAL_HOST=localhost
-MCP_FINANCIAL_PORT=8001
+[4/4] Report Agent: Generating report
+✓ Report saved: reports/AAPL_report_20251204_120000.json
 
-# Performance
-PARALLEL_EXECUTION=true
-MAX_WORKERS=4
-📊 Monitoring
-Access monitoring dashboard:
-
-Metrics: http://localhost:9090
-
-Health checks: http://localhost:9090/health
-
-Performance: http://localhost:9090/metrics
-
-🧪 Testing
-bash
-# Run all tests
-pytest
-
-# Run specific test suite
-pytest tests/test_agents.py -v
-pytest tests/test_chains.py -v
-
-# With coverage
-pytest --cov=src tests/
-📈 Performance Optimization
-The system implements:
-
-Parallel data collection
-
-LLM batching and model sharding
-
-Multi-tier caching
-
-Resource-aware execution planning
-
-Dynamic tier selection (Basic/Standard/Deep analysis)
-
-🛡 Fault Tolerance
-Agent health monitoring with heartbeats
-
-Hot standby agents and agent pools
-
-Circuit breakers for external services
-
-Graceful degradation strategies
-
-Automated recovery workflows
-
-📚 Documentation
-Full documentation available at:
-
-System Architecture
-
-Agent Design
-
-API Reference
-
-Deployment Guide
-
-🤝 Contributing
-Fork the repository
-
-Create a feature branch
-
-Commit your changes
-
-Push to the branch
-
-Open a Pull Request
-
-📄 License
-This project is licensed under the MIT License - see LICENSE file for details.
-
-🙏 Acknowledgments
-CrewAI for multi-agent orchestration
-
-LangChain for LLM integration
-
-MCP Protocol for tool standardization
-
-📞 Contact
-Anna Alekseeva - anna@example.com
-
-Project Link: https://github.com/yourusername/multi-agent-financial-system
+============================================================
+📊 ANALYSIS RESULTS
+============================================================
+                      Analysis of AAPL                      
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Metric                         ┃ Value                          ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Recommendation                 │ BUY                            │
+│ Confidence                     │ 85.0%                          │
+│ Price Target                   │ $187.50                        │
+│ Risk Level                     │ MEDIUM                         │
+│                                │                                │
+│ Current Price                  │ $175.42                        │
+│ Price Change                   │ 8.7%                           │
+│ RSI                            │ 65.2 (neutral)                 │
+│ MACD Signal                    │ bullish                        │
+│ Market Sentiment               │ bullish                        │
+│ Avg Sentiment                  │ 0.45                           │
+└────────────────────────────────┴────────────────────────────────┘
