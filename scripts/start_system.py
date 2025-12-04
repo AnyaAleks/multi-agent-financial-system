@@ -12,7 +12,7 @@ sys.path.insert(0, str(project_root))
 # Ollama settings
 os.environ["AI_PROVIDER"] = "ollama"
 os.environ["OLLAMA_BASE_URL"] = "http://localhost:11434"
-os.environ["OLLAMA_MODEL"] = "mistral:latest"  # Faster model
+os.environ["OLLAMA_MODEL"] = "mistral:latest"
 os.environ["ENVIRONMENT"] = "development"
 
 import asyncio
@@ -564,9 +564,9 @@ def status():
 
     console.print(table)
 
-    console.print(f"\n[dim]AI Provider: {os.environ['AI_PROVIDER']}")
-    console.print(f"Model: {os.environ['OLLAMA_MODEL']}")
-    console.print(f"Environment: {os.environ['ENVIRONMENT']}[/dim]")
+    console.print(f"\n[dim]AI Provider: {os.environ['AI_PROVIDER']}[/dim]")
+    console.print(f"[dim]Model: {os.environ['OLLAMA_MODEL']}[/dim]")
+    console.print(f"[dim]Environment: {os.environ.get('ENVIRONMENT', 'development')}[/dim]")
 
 if __name__ == "__main__":
     cli()
