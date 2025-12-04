@@ -1,0 +1,83 @@
+Project: Multi-Agent Financial Analysis System
+Course: Big Data Analysis
+Student: ALEKSEEVA ANNA 1820259022
+
+This system automates stock analysis using specialized AI agents that work together like a financial team
+
+Architecture:
+src/
+├── agents
+│   ├── analysis_agent.py
+│   ├── base_agent.py
+│   ├── data_agent.py
+│   └── report_agent.py
+├── chains
+│   ├── data_analysis_chain.py
+│   └── technical_analysis_chain.py
+├── dashboard
+│   └── app.py
+├── llm
+│   └── llm_factory.py
+├── mcp_servers
+│   └── financial_data_server.py
+├── memory
+│   └── short_term_memory.py
+├── monitoring
+│   └── health_monitor.py
+├── optimization
+
+Each agent has a specific role. The Manager Agent coordinates them all, similar to how a project manager works
+
+
+
+PART 1
+
+Step 1: Check System Status
+Let's check if all components are working. We can see Ollama is available, and all agents are ready
+-- python scripts/start_system.py status
+
+Step 2: System Test
+Now testing all system components. All tests pass successfully
+-- python scripts/start_system.py test
+
+Step 3: Demo Mode
+Let's demo with multiple stocks. The system analyzes AAPL, MSFT, and GOOGL, giving different recommendations for each
+-- python scripts/start_system.py demo
+
+Step 4: Full Analysis
+-- python scripts/start_system.py analyze --ticker AAPL --timeframe 1mo
+
+Step 5: Show Results
+The system creates detailed JSON reports. Each report includes executive summary, technical analysis, sentiment scores, risk assessment, and AI insights.
+-- ls -la reports/
+-- ls -la results/
+
+
+
+PART 2
+
+Feature 1: Real AI Insights
+The LLM Agent provides human-like analysis, explaining market conditions and investment rationale
+-- grep -A 10 "llm_insights" reports/AAPL_report_*.json
+
+Feature 2: Risk Assessment
+Automatic risk scoring helps investors understand potential downsides
+-- grep -A 5 "risk_assessment" reports/AAPL_report_*.json
+
+Feature 3: Quick Analysis
+For rapid decisions, there's a quick mode that provides recommendations without LLM
+-- python scripts/start_system.py quick --ticker TSLA
+
+
+PART 3
+
+Technical Details
+Framework: LangChain + CrewAI
+LLM: Ollama (Mistral, Llama3.1)
+Data: Yahoo Finance API
+Output: JSON reports
+CLI: Rich library for beautiful interface
+
+
+This project demonstrates how multi-agent AI systems can automate complex financial workflows. The architecture is extensible for adding more data sources and analysis types
+
