@@ -1,0 +1,112 @@
+{
+  "status": "success",
+  "ticker": "AAPL",
+  "timeframe": "1mo",
+  "timestamp": "2025-12-04T11:22:11.229243",
+  "summary": {
+    "recommendation": "HOLD",
+    "confidence": 0.6,
+    "price_target": 157.91,
+    "risk_level": "MEDIUM"
+  },
+  "analysis": {
+    "technical": {
+      "price_change_percent": -1.79,
+      "current_price": 177.88,
+      "rsi": 34.17,
+      "rsi_signal": "neutral",
+      "macd": {
+        "macd": -1.825222770893888,
+        "signal": -0.5964783774344309,
+        "histogram": 0.08566238227565504,
+        "crossover": "bullish"
+      },
+      "moving_averages": {
+        "sma_20": 174.74,
+        "sma_50": 181.58,
+        "sma_200": 178.34,
+        "golden_cross": false,
+        "death_cross": false
+      },
+      "support_level": 168.99,
+      "resistance_level": 186.77
+    },
+    "sentiment": {
+      "average_sentiment": 0.45,
+      "sentiment_trend": "bullish",
+      "positive_news": 3,
+      "negative_news": 0,
+      "total_news": 4
+    },
+    "risk": {
+      "risk_score": 0.65,
+      "risk_level": "MEDIUM",
+      "volatility": 0.15057014597955184,
+      "market_correlation": 0.798369258487714
+    },
+    "recommendation": {
+      "action": "HOLD",
+      "confidence": 0.6,
+      "reasoning": "Based on technical analysis and market sentiment",
+      "price_target": 157.91
+    }
+  },
+  "llm_insights": " Key Takeaways:\n1. AAPL's current price stands at $177.88, indicating a -1.8% decrease. However, the bullish market sentiment suggests potential recovery.\n2. The RSI of 34.2 is neutral, suggesting neither overbought nor oversold conditions, which could indicate potential for price movement in either direction.\n3. Medium risk level indicates that while AAPL offers growth potential, it may also involve higher volatility and uncertainty.\n4. Given the current market conditions, a HOLD recommendation is advised to capitalize on potential recovery while managing risk exposure.\n5. The investment horizon should be moderate, allowing for fluctuations in the",
+  "report": {
+    "status": "success",
+    "report_path": "reports/AAPL_report_20251204_112211.json",
+    "report": {
+      "ticker": "AAPL",
+      "generated_at": "2025-12-04T11:22:11.227793",
+      "executive_summary": {
+        "recommendation": "HOLD",
+        "confidence": 0.6,
+        "key_metrics": {
+          "price_change": -1.79,
+          "risk_level": "MEDIUM",
+          "market_sentiment": "bullish"
+        }
+      },
+      "technical_analysis": {
+        "price_change_percent": -1.79,
+        "current_price": 177.88,
+        "rsi": 34.17,
+        "rsi_signal": "neutral",
+        "macd": {
+          "macd": -1.825222770893888,
+          "signal": -0.5964783774344309,
+          "histogram": 0.08566238227565504,
+          "crossover": "bullish"
+        },
+        "moving_averages": {
+          "sma_20": 174.74,
+          "sma_50": 181.58,
+          "sma_200": 178.34,
+          "golden_cross": false,
+          "death_cross": false
+        },
+        "support_level": 168.99,
+        "resistance_level": 186.77
+      },
+      "sentiment_analysis": {
+        "average_sentiment": 0.45,
+        "sentiment_trend": "bullish",
+        "positive_news": 3,
+        "negative_news": 0,
+        "total_news": 4
+      },
+      "risk_assessment": {
+        "risk_score": 0.65,
+        "risk_level": "MEDIUM",
+        "volatility": 0.15057014597955184,
+        "market_correlation": 0.798369258487714
+      },
+      "llm_insights": " Key Takeaways:\n1. AAPL's current price stands at $177.88, indicating a -1.8% decrease. However, the bullish market sentiment suggests potential recovery.\n2. The RSI of 34.2 is neutral, suggesting neither overbought nor oversold conditions, which could indicate potential for price movement in either direction.\n3. Medium risk level indicates that while AAPL offers growth potential, it may also involve higher volatility and uncertainty.\n4. Given the current market conditions, a HOLD recommendation is advised to capitalize on potential recovery while managing risk exposure.\n5. The investment horizon should be moderate, allowing for fluctuations in the",
+      "data_snapshot": {
+        "price_points": 30,
+        "news_items": 4,
+        "analysis_period": "1mo"
+      }
+    }
+  }
+}

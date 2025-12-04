@@ -1,0 +1,32 @@
+# Core dependencies
+langchain>=0.1.0
+langchain-community>=0.0.10
+crewai>=0.1.0
+streamlit>=1.28.0
+plotly>=5.17.0
+pandas>=2.0.0
+numpy>=1.24.0
+
+# CLI & UI
+rich>=13.5.0
+click>=8.1.0
+
+# Data & APIs
+yfinance>=0.2.28
+requests>=2.31.0
+
+# Analytics
+sentence-transformers>=2.2.0
+rank-bm25>=0.2.2
+networkx>=3.1
+neo4j>=5.14.0
+
+# Storage
+redis>=5.0.0
+
+# Monitoring
+psutil>=5.9.0
+prometheus-client>=0.18.0
+
+# Technical analysis
+talib>=0.4.26

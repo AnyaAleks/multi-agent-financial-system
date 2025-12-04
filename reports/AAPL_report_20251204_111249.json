@@ -1,0 +1,53 @@
+{
+  "ticker": "AAPL",
+  "generated_at": "2025-12-04T11:12:49.599592",
+  "executive_summary": {
+    "recommendation": "HOLD",
+    "confidence": 0.57,
+    "key_metrics": {
+      "price_change": 2.72,
+      "risk_level": "LOW",
+      "market_sentiment": "bullish"
+    }
+  },
+  "technical_analysis": {
+    "price_change_percent": 2.72,
+    "current_price": 139.38,
+    "rsi": 49.43,
+    "rsi_signal": "neutral",
+    "macd": {
+      "macd": -1.2104711843976177,
+      "signal": -0.9343879836445327,
+      "histogram": 0.01165121127583324,
+      "crossover": "bearish"
+    },
+    "moving_averages": {
+      "sma_20": 144.48,
+      "sma_50": 136.79,
+      "sma_200": 131.12,
+      "golden_cross": false,
+      "death_cross": false
+    },
+    "support_level": 132.41,
+    "resistance_level": 146.35
+  },
+  "sentiment_analysis": {
+    "average_sentiment": 0.45,
+    "sentiment_trend": "bullish",
+    "positive_news": 3,
+    "negative_news": 0,
+    "total_news": 4
+  },
+  "risk_assessment": {
+    "risk_score": 0.19,
+    "risk_level": "LOW",
+    "volatility": 0.39289746047619456,
+    "market_correlation": 0.6632769496606907
+  },
+  "llm_insights": "Базовые инсайты из-за ошибки LLM",
+  "data_snapshot": {
+    "price_points": 30,
+    "news_items": 4,
+    "analysis_period": "1mo"
+  }
+}
